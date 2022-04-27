@@ -60,7 +60,7 @@ export const Todo = () => {
          </div>
          {todos.map((e) => (
             <div className="each" key={e.id}>
-               <Link to={`/${e.id}`}>{e.title}</Link>
+               <Link to={`/todo/${e.id}`}>{e.status ? '✅': '👉🏻'} {e.title}</Link>
                <div>
                   <button onClick={() => handleDelete(e.id)}>Delete</button>
                   <button onClick={() => handleToggle(e.id)}>Toggle</button>
@@ -70,9 +70,9 @@ export const Todo = () => {
       </div>
             <div className="completed">
             <h1>Completed: </h1>
-               {todos.map((e,i) => {
+               {todos.map((e) => {
                   if(e.status) {
-                     return <h3>✅ {e.title}</h3>
+                     return <h3 key={e.id}>✅ {e.title}</h3>
                   }
                })}
             </div>
