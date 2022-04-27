@@ -19,7 +19,7 @@
 .entire {
     border: 1px solid coral;
     width: 20%;
-    margin: auto;
+    /* margin: auto; */
     border-radius: 15px;
     padding: 2%;
     /* margin-top: 5%; */
@@ -63,4 +63,15 @@ h2 {
     margin-right: 4px;
     border-radius: 10px;
     padding: 2%
+}
+.TOTALENTIREBOX {
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.completed {
+    /* border: 1px solid red; */
+    color: white;
 }

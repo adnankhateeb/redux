@@ -46,7 +46,7 @@ export const Todo = () => {
       );
    };
 
-   return (
+   return (<div className = 'TOTALENTIREBOX'>
       <div className="entire">
          <div className="todos">
             <input
@@ -67,6 +67,15 @@ export const Todo = () => {
                </div>
             </div>
          ))}
+      </div>
+            <div className="completed">
+            <h1>Completed: </h1>
+               {todos.map((e,i) => {
+                  if(e.status) {
+                     return <h3>✅ {e.title}</h3>
+                  }
+               })}
+            </div>
       </div>
    );
 };
