@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Redux basic example</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <p>
+            <input type="text" id="todoText" />
+            <button id="addTodo">Add Todo</button>
+        <div id="todosDiv"></div>
+
+        </p>
+    </div>
+    <script>
+        function reducer(store, action) {
+            switch (action.type) {
+                case 'ADD_TODO':
+                    return { ...store, todos: [...store.todos, action.payload] }
+                default:
+                    return store
+            }
+        }
+        const initState = {
+            todos: [
+                { title: 'hello', status: false }
+            ]
+        };
+        const addTodo = (title) => {
+            return {
+                type: 'ADD_TODO',
+                payload: {
+                    title: title,
+                    status: false,
+                },
+            };
+        };
+
+        const btn = document.createElement('button');
+        btn.click = toggleStatus;
+        const toggleStatus = () => {
+            
+        }
+
+        const store = Redux.createStore(reducer, initState)
+        const todosDiv = document.getElementById('todosDiv')
+        const todoText = document.getElementById('todoText').value;
+        const render = () => {
+            todosDiv.innerHTML = store.getState().todos.map((e) => {
+                e.title +  '<br/>'
+            }).join('')
+            console.log(store.getState().todos)
+        }
+
+        render()
+
+        document.getElementById('addTodo')
+            .addEventListener('click', function () {
+                store.dispatch(addTodo(document.getElementById('todoText').value))
+                console.log(document.getElementById('todoText').value)
+                render();
+            })
+
+
+    </script>
+</body>
+
+</html>
