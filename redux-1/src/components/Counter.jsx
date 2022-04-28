@@ -1,11 +1,11 @@
 
-import { addCount } from "../redux/action";
+import { addCount } from "../redux/Counter/action";
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Counter = () => {
     const dispatch = useDispatch();
-    console.log('Counter')
-  const counter = useSelector((store) => store.counter)
+   //  console.log('Counter')
+  const counter = useSelector((store) => store.counter.counter)
     return <div>
          <h1>Count: {counter}</h1>
          <button

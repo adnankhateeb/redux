@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { addTodo, deleteTodo } from "../redux/action";
+import { addTodo, deleteTodo } from "../redux/Todo/action";
 
 export const Todo = () => {
    const dispatch = useDispatch();
    const todos = useSelector((store) => {
-      return store.todos;
+      return store.todos.todos;
    }  );
 
    const [text, setText] = useState("");
