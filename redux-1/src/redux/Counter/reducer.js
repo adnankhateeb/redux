@@ -1,7 +1,6 @@
 import { ADD_COUNT } from "./action";
 const initState = {
    counter: 0,
-   todos: [],
 };
 
 export const counterReducer = (store=initState, action) => {

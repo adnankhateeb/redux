@@ -1,6 +1,5 @@
 import { ADD_TODO, REMOVE_TODO } from "./action";
 const initState = {
-   counter: 0,
    todos: [],
 };
 

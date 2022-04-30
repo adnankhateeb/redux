@@ -1,22 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { addTodo, deleteTodo } from "../redux/Todo/action";
+import { useEffect, useState } from "react";
+import { addTodo, deleteTodo, getTodos } from "../redux/Todo/action";
+import axios from "axios";
+import { nanoid } from "nanoid";
 
 export const Todo = () => {
    const dispatch = useDispatch();
    const todos = useSelector((store) => {
       return store.todos.todos;
-   }  );
+   });
 
    const [text, setText] = useState("");
 
    const handleAdd = () => {
-      dispatch(
-         addTodo({
+      axios
+         .post("http://localhost:8080/todos", {
             title: text,
             status: false,
+            id: nanoid(4),
          })
-      );
+         .then(() => {
+            dispatch(getTodos());
+         });
    };
 
    const handleDelete = (title) => {
@@ -26,7 +31,10 @@ export const Todo = () => {
          })
       );
    };
-   console.log('todo')
+
+   useEffect(() => {
+      dispatch(getTodos());
+   }, []);
 
    return (
       <div>
@@ -40,10 +48,10 @@ export const Todo = () => {
          <button onClick={handleAdd}>+</button>
 
          {todos.map((e, i) => (
-            <>
-               <div key={i}>{e.title}</div>
-               <button key = {i+10} onClick={() => handleDelete(e.title)}>-</button>
-            </>
+            <div key={e.id}>
+               <div>{e.title}</div>
+               <button onClick={() => handleDelete(e.title)}>-</button>
+            </div>
          ))}
       </div>
    );
